@@ -11,15 +11,13 @@ router.get('/', function(req, res, next){
 router.post('/', function(req, res, next) {
   console.log('why cant post?');
     let text = req.body.text;
-    console.log(req.body);
-    let fileName = 'assets/red_hat.jpg';
+    let fileName = 'public/images/red_hat.jpg';
     let imageCaption = text;
     let loadedImage;
+    let newPath = 'public/images/' + text.toLowerCase().replace(/ /g, "_") + '.jpg'
     Jimp.read(fileName)
       .then(function (image) {
           loadedImage = image;
-          console.log(image);
-          console.log(loadedImage);
           return Jimp.loadFont(Jimp.FONT_SANS_64_WHITE);
       })
       .then(function (font) {
@@ -28,7 +26,10 @@ router.post('/', function(req, res, next) {
                               alignmentX: Jimp.HORIZONTAL_ALIGN_CENTER,
                               alignmentY: Jimp.VERTICAL_ALIGN_MIDDLE
                             }, 400, 800)
-                      .write('assets/' + text + '.jpg');
+                     .write(newPath);
+      })
+      .then(function(){
+        res.send(newPath);
       })
       .catch(function (err) {
           console.error(err);
