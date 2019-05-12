@@ -23,11 +23,11 @@ router.post('/', function(req, res, next) {
           return Jimp.loadFont(Jimp.FONT_SANS_64_WHITE);
       })
       .then(function (font) {
-          loadedImage.print(font, 0, -100, {
+          loadedImage.print(font, 200, -100, {
                               text: imageCaption,
                               alignmentX: Jimp.HORIZONTAL_ALIGN_CENTER,
                               alignmentY: Jimp.VERTICAL_ALIGN_MIDDLE
-                            }, 800, 800)
+                            }, 400, 800)
                       .write('assets/' + text + '.jpg');
       })
       .catch(function (err) {
