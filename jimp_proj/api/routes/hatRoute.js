@@ -1,8 +1,16 @@
-var express = require('express');
-var router = express.Router();
-var Jimp = require('jimp');
+let express = require('express');
+let router = express.Router();
+let Jimp = require('jimp');
+let bodyParser = require('body-parser')
+
 console.log('really??')
-router.get('/', function(req, res, next) {
+
+router.get('/', function(req, res, next){
+  console.log('was this messing it up?');
+})
+router.post('/', function(req, res, next) {
+  console.log('why cant post?');
+    console.log(req.body);
     let fileName = 'assets/red_hat.jpg';
     let imageCaption = 'O SHIT IT WORK';
     let loadedImage;
